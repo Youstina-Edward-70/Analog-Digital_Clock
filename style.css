@@ -1,0 +1,219 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-color: #fff;
+    --second-color: #3a82f6;
+    --bacground-color: #2b2d30;
+}
+
+body {
+    font-family: "Tajawal", sans-serif;
+    position: relative;
+    height: 100vh;
+    background-color: var(--bacground-color);
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 80vmin;
+    height: 80vmin;
+    max-width: 500px;
+    max-height: 500px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bars,
+.hoursNum {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.bars span {
+    position: absolute;
+    transform: rotate(calc(var(--bar) * 6deg));
+    /* 360deg / 60 = 6deg */
+    inset: -20px;
+    text-align: center;
+}
+
+.bars span p {
+    display: inline-block;
+    width: clamp(1px, 0.5vmin, 3px);
+    height: clamp(5px, 3.3vmin, 15px);
+    background-color: var(--main-color);
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--main-color);
+}
+
+.bars span:nth-child(5n) p {
+    width: clamp(2px, 1.1vmin, 6px);
+    height: clamp(15px, 5.5vmin, 25px);
+    transform: translateY(2px);
+}
+
+.hoursNum span {
+    position: absolute;
+    transform: rotate(calc(var(--hour) * 30deg));
+    /* 360deg / 12 = 30deg */
+    inset: 6px;
+    text-align: center;
+}
+
+.hoursNum span p {
+    font-size: clamp(24px, 10vmin, 52px);
+    color: var(--main-color);
+    text-shadow: 0 0 10px var(--main-color);
+    transform: rotate(calc(var(--hour) * -30deg));
+}
+
+.clockHands {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clockHands .hand {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+}
+
+.clockHands .hand i {
+    display: block;
+    border-radius: 50%;
+    transform-origin: bottom;
+    box-shadow: 0 0 10px var(--main-color);
+}
+
+.clockHands .hours {
+    width: 50vmin;
+    height: 50vmin;
+    max-width: 320px;
+    max-height: 320px;
+}
+
+.clockHands .hours i {
+    width: 0.8vmin;
+    height: 50%;  /* half of parent height */
+    background-color: var(--main-color);
+}
+
+.clockHands .minutes {
+    width: 70vmin;
+    height: 70vmin;
+    max-width: 450px;
+    max-height: 450px;
+}
+
+/* center dot bottom */
+.clockHands .minutes::before {
+    content: '';
+    position: absolute;
+    width: 5vmin;
+    height: 5vmin;
+    max-width: 25px;
+    max-height: 25px;
+    background-color: var(--main-color);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 5px var(--main-color);
+}
+
+.clockHands .minutes i {
+    width: 0.6vmin;
+    height: 50%;
+    /* half of parent height */
+    background-color: var(--main-color);
+}
+
+.clockHands .seconds {
+    width: 80vmin;
+    height: 80vmin;
+    max-width: 480px;
+    max-height: 480px;
+}
+
+/* center dot top */
+.clockHands .seconds::before {
+    content: '';
+    position: absolute;
+    width: 4vmin;
+    height: 4vmin;
+    max-width: 20px;
+    max-height: 20px;
+    background-color: var(--second-color);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.clockHands .seconds i {
+    width: 0.44vmin;
+    height: calc(50% + 70px);
+    /* half of parent height */
+    background-color: var(--second-color);
+    box-shadow: none;
+}
+
+a {
+    text-decoration: none;
+    box-shadow: 2px 5px 20px 0px rgba(0, 0, 0, 0.75);
+    background-color: var(--main-color);
+    color: var(--bacground-color);
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    position: absolute;
+    bottom: clamp(5px, 5vmin, 50px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in;
+}
+
+a:hover {
+    background-color: var(--bacground-color);
+    color: var(--main-color);
+    box-shadow: 0px 0px 0px transparent;
+    text-shadow: 0 0 7px var(--main-color);
+}
+
+a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--main-color);
+    border-radius: 25px;
+    transform: scale(0);
+    transition: all 0.5s;
+}
+
+a:hover::before {
+    transform: scale(1);
+}
+
+@media (min-width: 1280px) {
+    a {
+        bottom: auto;
+        top: 20px;
+        left: 70px;
+    }
+}
