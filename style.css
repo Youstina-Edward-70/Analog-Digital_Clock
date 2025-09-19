@@ -182,8 +182,8 @@ a {
     padding: 10px 20px;
     border-radius: 25px;
     position: absolute;
-    bottom: clamp(5px, 5vmin, 50px);
-    left: 50%;
+    top: 20px;
+    left: 70px;
     transform: translateX(-50%);
     border: 2px solid transparent;
     transition: all 0.3s ease-in;
@@ -208,12 +208,4 @@ a::before {
 
 a:hover::before {
     transform: scale(1);
-}
-
-@media (min-width: 1280px) {
-    a {
-        bottom: auto;
-        top: 20px;
-        left: 70px;
-    }
 }

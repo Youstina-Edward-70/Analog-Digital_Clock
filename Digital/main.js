@@ -3,8 +3,9 @@ let minutes = document.querySelector(".minutes");
 let seconds = document.querySelector(".seconds");
 let AmPm = document.querySelector(".AmPm");
 let format = document.querySelector(".format");
+const dateBox = document.querySelector(".date");
 
-let is24 = true;
+let is24 = false;
 format.addEventListener("click", () => {
     is24 = !is24;
     format.innerHTML = is24 ? "12 Hours" : "24 Hours";
@@ -29,4 +30,18 @@ function currentTime() {
     AmPm.innerHTML = is24? "" : ap;
 }
 
+function updateDate() {
+    const now = new Date();
+    const options = { weekday: "long", month: "long", day: "numeric", year: "numeric" };
+    dateBox.textContent = now.toLocaleDateString("en-US", options);
+
+    const tomorrow = new Date(now);
+    tomorrow.setHours(24, 0, 0, 0);
+    const Midnight = tomorrow - now;
+
+    setTimeout(updateDate, Midnight);
+}
+
+updateDate();
 setInterval(currentTime, 1000);
+
